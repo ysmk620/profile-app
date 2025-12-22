@@ -21,6 +21,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
 
 
 class MainActivity : ComponentActivity() {
@@ -34,8 +35,22 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colors.background
                 ) {
                     Column(
-                        horizontalAlignment = Alignment.CenterHorizontally
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        modifier = Modifier.padding(20.dp)
                     ){
+                        //プロフィール画面
+                        Image(
+                            painter = painterResource(id = R.drawable.image_profile),
+                            contentDescription = "プロフィール",
+                            modifier = Modifier
+                                .size(100.dp)
+                                .clip(RoundedCornerShape(10.dp)),
+                                contentScale = ContentScale.Crop
+                        )
+
+                        Spacer(modifier =Modifier.height(20.dp))
+
+                        //名前
                         Text(
                             text = "山田太郎",
                             color = Color.Gray,
@@ -45,6 +60,7 @@ class MainActivity : ComponentActivity() {
 
                         Spacer(modifier = Modifier.height(20.dp))
 
+                        //職業
                         Text(
                             text ="職業：Androidエンジニア",
                             color = Color.Gray,
