@@ -27,6 +27,9 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color.Companion.Gray
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
+import com.example.jetprofile.components.CompanySection
+import com.example.jetprofile.components.DetailSection
+import com.example.jetprofile.components.Label
 
 
 class MainActivity : ComponentActivity() {
@@ -39,109 +42,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Column(
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        modifier = Modifier.padding(20.dp)
-                    ){
-                        //プロフィール画面
-                        Image(
-                            painter = painterResource(id = R.drawable.image_profile),
-                            contentDescription = "プロフィール",
-                            modifier = Modifier
-                                .size(100.dp)
-                                .clip(RoundedCornerShape(10.dp)),
-                                contentScale = ContentScale.Crop
-                        )
-
-                        Spacer(modifier =Modifier.height(20.dp))
-
-                        //名前
-                        Text(
-                            text = "山田太郎",
-                            color = Gray,
-                            fontSize = 16.sp,
-                            fontWeight = FontWeight.ExtraBold
-                        )
-
-                        Spacer(modifier = Modifier.height(20.dp))
-
-                        //職業
-                        Text(
-                            text ="職業：Androidエンジニア",
-                            color = Gray,
-                            fontSize = 16.sp,
-                            fontWeight = FontWeight.ExtraBold
-                        )
-
-                        Spacer(modifier=Modifier.height(20.dp))
-
-                        Column(
-                            horizontalAlignment = Alignment.Start,
-                            modifier = Modifier.fillMaxWidth(),
-                        ){
-                            //会社名
-                            Text(
-                                text = "Goooogle",
-                                fontSize = 26.sp,
-                                fontWeight = FontWeight.Bold,
-                            )
-                            Spacer(modifier=Modifier.height(10.dp))
-                            //部署・グループ
-                            Text(
-                                text="DXカンパニー　テクノロジーグループ",
-                                color=Gray,
-                                fontSize=16.sp,
-                            )
-                            Spacer(modifier=Modifier.height(20.dp))
-
-                            //Email
-                            Label(icon = Icons.Default.Email, text = "email")
-                            
-                            Spacer(modifier=Modifier.height(10.dp))
-                            Text(
-                                text = "example@example.com",
-                                fontSize = 16.sp,
-                            )
-                            Spacer(modifier=Modifier.height(5.dp))
-
-                            Divider(
-                                thickness = 2.dp,
-                                modifier = Modifier.clip(RoundedCornerShape(1000.dp)),
-                            )
-                        }
-                        Spacer(modifier = Modifier.height(20.dp))
-
-                        //詳細表示ボタン
-                        Button(
-                            modifier = Modifier.fillMaxWidth(),
-                            colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFF85F6A )),
-                            onClick = { /*TODO*/ },
-                        ) {
-                            Text(text = "詳細を表示",color=Color.White)
-                        }
-                        Spacer(modifier = Modifier.height(20.dp))
-                        
-                        //趣味＆居住地
-                        Column(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .clip(RoundedCornerShape(10.dp))
-                                .background(Color.LightGray.copy(alpha = 0.3f))
-                                .padding(horizontal = 10.dp, vertical = 20.dp)
-                        ) {
-                            Label(
-                                icon = Icons.Default.Favorite,
-                                text = "趣味：個人開発",
-                                color = Gray,
-                            )
-                            Spacer(modifier = Modifier.height(10.dp))
-                            Label(
-                                icon = Icons.Default.LocationOn,
-                                text = "居住地：東京都大田区",
-                                color = Gray,
-                            )
-                        }
-                    }
+                    MainContent()
                 }
             }
         }
@@ -149,19 +50,60 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Label(icon: ImageVector, text: String, color: Color= MaterialTheme.colors.onBackground){
-    Row(verticalAlignment = Alignment.CenterVertically){
-        Icon(
-            imageVector = icon,
-            contentDescription = null,
+fun MainContent(){
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.padding(20.dp)
+    ){
+        //プロフィール画面
+        Image(
+            painter = painterResource(id = R.drawable.image_profile),
+            contentDescription = "プロフィール",
+            modifier = Modifier
+                .size(100.dp)
+                .clip(RoundedCornerShape(10.dp)),
+            contentScale = ContentScale.Crop
         )
-        Spacer(modifier = Modifier.width(10.dp))
+
+        Spacer(modifier =Modifier.height(20.dp))
+
+        //名前
         Text(
-            text = text,
-            color = color,
-            fontSize = 14.sp,
-            fontWeight = FontWeight.Bold,
+            text = "山田太郎",
+            color = Gray,
+            fontSize = 16.sp,
+            fontWeight = FontWeight.ExtraBold
         )
+
+        Spacer(modifier = Modifier.height(20.dp))
+
+        //職業
+        Text(
+            text ="職業：Androidエンジニア",
+            color = Gray,
+            fontSize = 16.sp,
+            fontWeight = FontWeight.ExtraBold
+        )
+
+        Spacer(modifier=Modifier.height(20.dp))
+
+        CompanySection()
+        Spacer(modifier = Modifier.height(20.dp))
+
+        //詳細表示ボタン
+        Button(
+            modifier = Modifier.fillMaxWidth(),
+            colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFF85F6A )),
+            onClick = { /*TODO*/ },
+        ) {
+            Text(text = "詳細を表示",color=Color.White)
+        }
+        Spacer(modifier = Modifier.height(20.dp))
+
+        //趣味＆居住地
+        DetailSection()
     }
 }
+
+
 
