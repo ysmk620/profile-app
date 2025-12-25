@@ -30,6 +30,7 @@ import androidx.compose.ui.layout.ContentScale
 import com.example.jetprofile.components.CompanySection
 import com.example.jetprofile.components.DetailSection
 import com.example.jetprofile.components.Label
+import com.example.jetprofile.R
 
 
 class MainActivity : ComponentActivity() {
